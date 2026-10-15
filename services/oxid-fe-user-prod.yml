@@ -2,8 +2,11 @@
     build:
       context: .
       dockerfile: oxid-fe-user/Dockerfile
+    image: oxid-fe-user:local
     environment:
       API_UPSTREAM: http://host.docker.internal
+    volumes:
+      - ./oxid-fe-user/instances/example-a:/etc/oxid-fe-instance:ro
     ports:
       - "8090:80"
     extra_hosts:
