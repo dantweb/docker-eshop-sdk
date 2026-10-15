@@ -1,0 +1,14 @@
+  oxid-fe-core:
+    build:
+      context: containers/node-fe
+    user: ${HOST_USER_ID}:${HOST_GROUP_ID}
+    environment:
+      npm_config_cache: /npm-cache
+    volumes:
+      - ./oxid-fe-core:/app:cached
+      - ./data/npm:/npm-cache:cached
+    ports:
+      - "5175:5175"
+    extra_hosts:
+      - "localhost.local:host-gateway"
+      - "host.docker.internal:host-gateway"
