@@ -1,0 +1,13 @@
+  oxid-fe-user-prod-c:
+    image: oxid-fe-user:local
+    depends_on:
+      - oxid-fe-user-prod
+    environment:
+      API_UPSTREAM: http://host.docker.internal
+    volumes:
+      - ./oxid-fe-user/instances/example-peroxid:/etc/oxid-fe-instance:ro
+    ports:
+      - "8092:80"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
