@@ -6,7 +6,9 @@
     environment:
       API_UPSTREAM: http://host.docker.internal
     volumes:
-      - ./oxid-fe-user/instances/example-a:/etc/oxid-fe-instance:ro
+      # THIS deployment's config: a single-file mount over the image's default instance file
+      # (a directory mount of the repo would expose plugin sources through /plugins/)
+      - ./oxid-fe-user/oxid-config.yaml:/etc/oxid-fe-instance/oxid-config.yaml:ro
     ports:
       - "8090:80"
     extra_hosts:
